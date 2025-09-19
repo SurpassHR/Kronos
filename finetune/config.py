@@ -10,12 +10,13 @@ class Config:
         # Data & Feature Parameters
         # =================================================================
         # TODO: Update this path to your Qlib data directory.
-        self.qlib_data_path = "./qlib_data/cn_data"
-        self.instrument = 'csi300'
+        self.base_path = "/home/hr0530/codes/Kronos"
+        self.qlib_data_path = f"{self.base_path}/qlib_data/cn_data_1y_1d/train"
+        self.instrument = 'all'
 
         # Overall time range for data loading from Qlib.
-        self.dataset_begin_time = "2011-01-01"
-        self.dataset_end_time = '2025-06-05'
+        self.dataset_begin_time = "2021-03-29"
+        self.dataset_end_time = '2025-09-18'
 
         # Sliding window parameters for creating samples.
         self.lookback_window = 90  # Number of past time steps for input.
@@ -32,13 +33,13 @@ class Config:
         # =================================================================
         # Note: The validation/test set starts earlier than the training/validation set ends
         # to account for the `lookback_window`.
-        self.train_time_range = ["2011-01-01", "2022-12-31"]
-        self.val_time_range = ["2022-09-01", "2024-06-30"]
-        self.test_time_range = ["2024-04-01", "2025-06-05"]
-        self.backtest_time_range = ["2024-07-01", "2025-06-05"]
+        self.train_time_range = ["2021-03-29", "2022-03-29"]
+        self.val_time_range = ["2022-03-20", "2023-03-29"]
+        self.test_time_range = ["2024-03-20", "2025-03-29"]
+        self.backtest_time_range = ["2025-03-30", "2025-09-18"]
 
         # TODO: Directory to save the processed, pickled datasets.
-        self.dataset_path = "/home/hr0530/codes/Kronos/data/processed_datasets"
+        self.dataset_path = f"{self.base_path}/data/processed_datasets"
 
         # =================================================================
         # Training Hyperparameters
@@ -85,21 +86,21 @@ class Config:
 
         # Base directory for saving model checkpoints and results.
         # Using a general 'outputs' directory is a common practice.
-        self.save_path = "/home/hr0530/codes/Kronos/outputs/models"
+        self.save_path = f"{self.base_path}/outputs/models"
         self.tokenizer_save_folder_name = 'finetune_tokenizer_demo'
         self.predictor_save_folder_name = 'finetune_predictor_demo'
         self.backtest_save_folder_name = 'finetune_backtest_demo'
 
         # Path for backtesting results.
-        self.backtest_result_path = "/home/hr0530/codes/Kronos/outputs/backtest_results"
+        self.backtest_result_path = f"{self.base_path}/outputs/backtest_results"
 
         # =================================================================
         # Model & Checkpoint Paths
         # =================================================================
         # TODO: Update these paths to your pretrained model locations.
         # These can be local paths or Hugging Face Hub model identifiers.
-        self.pretrained_tokenizer_path = "/home/hr0530/codes/Kronos/pretrained_model/models--NeoQuasar--Kronos-Tokenizer-base/snapshots/0e0117387f39004a9016484a186a908917e22426"
-        self.pretrained_predictor_path = "/home/hr0530/codes/Kronos/pretrained_model/models--NeoQuasar--Kronos-base/snapshots/2b554741eca47781b64468546e77fef3e85130e6"
+        self.pretrained_tokenizer_path = f"{self.base_path}/pretrained_model/models--NeoQuasar--Kronos-Tokenizer-base/snapshots/0e0117387f39004a9016484a186a908917e22426"
+        self.pretrained_predictor_path = f"{self.base_path}/pretrained_model/models--NeoQuasar--Kronos-base/snapshots/2b554741eca47781b64468546e77fef3e85130e6"
 
         # Paths to the fine-tuned models, derived from the save_path.
         # These will be generated automatically during training.
@@ -121,9 +122,10 @@ class Config:
 
     def _set_benchmark(self, instrument):
         dt_benchmark = {
-            'csi800': "SH000906",
-            'csi1000': "SH000852",
-            'csi300': "SH000300",
+            # 'csi800': "SH000906",
+            # 'csi1000': "SH000852",
+            # 'csi300': "SH000300",
+            'all': "SH513060",
         }
         if instrument in dt_benchmark:
             return dt_benchmark[instrument]
