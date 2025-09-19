@@ -20,7 +20,7 @@ def setup_ddp():
     if not dist.is_available():
         raise RuntimeError("torch.distributed is not available.")
 
-    dist.init_process_group(backend="nccl")
+    dist.init_process_group(backend="nccl", device_id=0)
     rank = int(os.environ["RANK"])
     world_size = int(os.environ["WORLD_SIZE"])
     local_rank = int(os.environ["LOCAL_RANK"])
@@ -113,6 +113,3 @@ def format_time(seconds: float) -> str:
         str: The formatted time string (e.g., "0:15:32").
     """
     return str(datetime.timedelta(seconds=int(seconds)))
-
-
-

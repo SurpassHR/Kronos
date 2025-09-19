@@ -10,7 +10,7 @@ class Config:
         # Data & Feature Parameters
         # =================================================================
         # TODO: Update this path to your Qlib data directory.
-        self.qlib_data_path = "~/.qlib/qlib_data/cn_data"
+        self.qlib_data_path = "./qlib_data/cn_data"
         self.instrument = 'csi300'
 
         # Overall time range for data loading from Qlib.
@@ -38,7 +38,7 @@ class Config:
         self.backtest_time_range = ["2024-07-01", "2025-06-05"]
 
         # TODO: Directory to save the processed, pickled datasets.
-        self.dataset_path = "./data/processed_datasets"
+        self.dataset_path = "/home/hr0530/codes/Kronos/data/processed_datasets"
 
         # =================================================================
         # Training Hyperparameters
@@ -72,7 +72,7 @@ class Config:
         # =================================================================
         # Experiment Logging & Saving
         # =================================================================
-        self.use_comet = True # Set to False if you don't want to use Comet ML
+        self.use_comet = False # Set to False if you don't want to use Comet ML
         self.comet_config = {
             # It is highly recommended to load secrets from environment variables
             # for security purposes. Example: os.getenv("COMET_API_KEY")
@@ -85,21 +85,21 @@ class Config:
 
         # Base directory for saving model checkpoints and results.
         # Using a general 'outputs' directory is a common practice.
-        self.save_path = "./outputs/models"
+        self.save_path = "/home/hr0530/codes/Kronos/outputs/models"
         self.tokenizer_save_folder_name = 'finetune_tokenizer_demo'
         self.predictor_save_folder_name = 'finetune_predictor_demo'
         self.backtest_save_folder_name = 'finetune_backtest_demo'
 
         # Path for backtesting results.
-        self.backtest_result_path = "./outputs/backtest_results"
+        self.backtest_result_path = "/home/hr0530/codes/Kronos/outputs/backtest_results"
 
         # =================================================================
         # Model & Checkpoint Paths
         # =================================================================
         # TODO: Update these paths to your pretrained model locations.
         # These can be local paths or Hugging Face Hub model identifiers.
-        self.pretrained_tokenizer_path = "path/to/your/Kronos-Tokenizer-base"
-        self.pretrained_predictor_path = "path/to/your/Kronos-small"
+        self.pretrained_tokenizer_path = "/home/hr0530/codes/Kronos/pretrained_model/models--NeoQuasar--Kronos-Tokenizer-base/snapshots/0e0117387f39004a9016484a186a908917e22426"
+        self.pretrained_predictor_path = "/home/hr0530/codes/Kronos/pretrained_model/models--NeoQuasar--Kronos-base/snapshots/2b554741eca47781b64468546e77fef3e85130e6"
 
         # Paths to the fine-tuned models, derived from the save_path.
         # These will be generated automatically during training.
